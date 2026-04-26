@@ -1,4 +1,4 @@
-from my_pkg import math_operations
+from my_pkg.math_operations import add
 
-result_add = math_operations.add(3, 5)
+result_add = add(3, 5)
 print(result_add)

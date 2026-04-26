@@ -21,14 +21,18 @@
 class Drink:
     """饮品类：所有饮品共有的模板"""
 
+    # 这里有三个属性，分辨类里面的属性，还是参数，要看self后面的，self跟着的就是对象的属性
     def __init__(self, name, size, sugar):
         self.name = name
         self.size = size
-        self.__sugar = sugar  # 私有属性，不希望外部随便改
+        self.__sugar = sugar  # 私有属性，不希望外部随便改。外部不能通过对象.的形式来调用（修改或获取）
+        # 私有属性，类里面的方法是可以访问的，如get_sugar
 
+    # 获取糖度
     def get_sugar(self):
         return self.__sugar
 
+    # 这里是“封装”特性的一个比较好的说明
     def set_sugar(self, sugar):
         if sugar not in ["无糖", "少糖", "半糖", "全糖"]:
             print("糖度不合法，默认改为半糖")
@@ -44,9 +48,11 @@ class MilkTea(Drink):
     """奶茶类：继承自饮品"""
 
     def __init__(self, name, size, sugar, topping):
+        # 这里相当于调用父类的构造方法 可以先忽略
         super().__init__(name, size, sugar)
         self.topping = topping
 
+    # Overrides method in Drink
     def make(self):
         print(
             f"加入茶底、牛奶和{self.topping}，制作一杯{self.size}的{self.name}，糖度：{self.get_sugar()}"
@@ -67,7 +73,13 @@ class FruitTea(Drink):
 
 
 # 实例化对象：真正点出来的几杯饮品
-drink1 = MilkTea("珍珠奶茶", "大杯", "少糖", "珍珠")
+drink1 = MilkTea("珍珠奶茶", "大杯", "半糖", "珍珠")
+
+drink1.name="奥利奥"
+# .sugar，是.不出来的，只能通过提供的方法来调用修改sugar，但是sugar是收到校验的，这里就是封装的好处
+drink1.set_sugar("一百度糖")
+
+
 drink2 = FruitTea("柠檬果茶", "中杯", "半糖", "柠檬")
 drink3 = MilkTea("椰果奶茶", "小杯", "全糖", "椰果")
 

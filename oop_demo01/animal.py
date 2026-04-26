@@ -52,29 +52,33 @@ class PetHospital:
 
     def __init__(self, name):
         self.name = name
+        # 这里的 pets属性并未在构造方法的初始化参数中体现，见add_pet
         self.pets = []
 
+    # 收宠物入园
     def add_pet(self, pet):
         self.pets.append(pet)
         print(f"{pet.name}已经进入{self.name}")
 
+    # 检查宠物
     def check_all_pets(self):
         print(f"欢迎来到{self.name}，医生开始检查宠物：")
 
         for pet in self.pets:
             pet.eat()
             pet.sleep()
-            pet.speak()
+            pet.speak() # 多态的体现
             print("检查完成")
             print("-" * 20)
 
-
+# 实例化 这里 hospital就叫做 阳光宠物医院
 hospital = PetHospital("阳光宠物医院")
 
 cat = Cat("咪咪", 2)
 dog = Dog("旺财", 3)
 bird = Bird("小黄", 1)
 
+# 收宠物入园
 hospital.add_pet(cat)
 hospital.add_pet(dog)
 hospital.add_pet(bird)
@@ -156,6 +160,8 @@ class Bird(Pet):
 它们不用重复写 name、age、eat()、sleep()，可以直接复用父类的代码。
 
 这就是继承。
+
+继承里面多了一个方法的重写 method Override
 
 5. 多态
 for pet in self.pets:

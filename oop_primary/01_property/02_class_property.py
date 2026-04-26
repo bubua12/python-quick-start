@@ -29,6 +29,13 @@ class Person:
             print(f'年龄超出范围了，已经将年龄设置为最大值：{Person.max_age}')
             self.age = Person.max_age
 
+    @classmethod
+    def say_hi(self):
+        print("Hello, Mr.")
+
+    @staticmethod
+    def eat(self):
+        print("eat")
 
 # 验证一下：类属性是保存在类身上的
 # print(Person.__dict__)
